@@ -1,0 +1,17 @@
+DBEntities\PromoEntity.class
+Managers\DBConfigurater.class
+Controllers\PromoController.class
+Test\Test.class
+Tools\CookieName.class
+DBEntities\CarEntity.class
+Controllers\PersonalAreaController.class
+DBEntities\UserEntity.class
+DBEntities\AccountEntity.class
+Managers\UserASManager.class
+Tools\CookieCreater$1.class
+Security\CookieSecurity.class
+Tools\CookieCreater.class
+DBEntities\UserasEntity.class
+Managers\PromoManager.class
+Controllers\RegController.class
+Managers\Constants.class

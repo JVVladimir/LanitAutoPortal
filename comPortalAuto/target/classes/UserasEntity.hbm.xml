@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="DBEntities.UserasEntity" table="USERAS" schema="PUBLIC" catalog="AUTOPORTAL">
+        <id name="id" column="ID" type="integer">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="info" column="INFO" unique="true" class="DBEntities.UserEntity" not-null="true" cascade="all"/>
+        <many-to-one name="ac" column="AC" unique="true" class="DBEntities.AccountEntity" not-null="true"  cascade="all"/>
+        <property name="role" column="ROLE" type="string" not-null="true"/>
+    </class>
+
+    <class name="DBEntities.AccountEntity" table="ACCOUNT" schema="PUBLIC" catalog="AUTOPORTAL">
+        <id name="id" column="ID" type="integer">
+            <generator class="native"/>
+        </id>
+        <property name="login" column="LOGIN" type="string" unique="true" not-null="true"/>
+        <property name="pass" column="PASS" type="string" not-null="true"/>
+        <property name="stat" column="STAT" type="string" not-null="true"/>
+    </class>
+
+    <class name="DBEntities.UserEntity" table="USER" schema="PUBLIC" catalog="AUTOPORTAL">
+        <id name="id" column="ID" type="integer">
+            <generator class="native"/>
+        </id>
+        <property name="fio" column="FIO" type="string" not-null="true"/>
+        <property name="addr" column="ADDR" type="string"/>
+        <property name="mphone" column="MPHONE" type="string" not-null="true"/>
+        <property name="email" column="EMAIL" type="string"/>
+    </class>
+
+    <class name="DBEntities.CarEntity" table="CAR" schema="PUBLIC" catalog="AUTOPORTAL">
+        <id name="id" column="ID" type="integer">
+            <generator class="native"/>
+        </id>
+        <property name="num" column="NUM" type="string" not-null="true" unique="true"/>
+        <property name="brend" column="BREND" type="string" not-null="true"/>
+        <many-to-one name="owner" column="OWNER" class="DBEntities.UserasEntity" not-null="true"/>
+        <property name="model" column="MODEL" type="string" not-null="true"/>
+        <property name="power" column="POWER" type="integer"/>
+        <property name="body" column="BODY" type="string" not-null="true"/>
+        <property name="mileage" column="MILEAGE" type="integer" not-null="true"/>
+        <property name="date" column="DATE" type="date"/>
+    </class>
+
+    <class name="DBEntities.PromoEntity" table="PROMO" schema="PUBLIC" catalog="AUTOPORTAL">
+        <id name="id" column="ID" type="integer">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="car" column="AUTO" class="DBEntities.CarEntity" not-null="true"  cascade="all" unique="true"/>
+        <many-to-one name="owner" column="OWNER" class="DBEntities.UserasEntity" not-null="true"/>
+        <property name="price" column="PRICE" type="integer" not-null="true"/>
+        <property name="info" column="INFO" type="string"/>
+        <property name="date" column="DATE" type="date" not-null="true"/>
+        <property name="stat" column="STAT" type="string" not-null="true"/>
+    </class>
+
+</hibernate-mapping>
